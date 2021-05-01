@@ -18,10 +18,11 @@ Create a configuration file in `/etc/raspibackup.conf` with the following:
 BACKUP_ROOT=/path/to/store/your/backups
 ```
 
-Now run the following to start the first backup.
+Now run the following to start the first backup:
 ```
-sudo doBackup.sh
+doBackup.sh
 ```
+It will run commands with `sudo`, so you may be asked for a password. Admin privileges are needed to copy system files as well as user files.
 
 It will print all files being copied. 
 Once finished, you'll find the files in a `backup.0` subdirectory. It will contain two more subdirectories, `boot` and `root`, with all the files on your system.
