@@ -20,29 +20,28 @@ fi
 
 set -e
 
-
+# Do the real thing or just show the commands without running
 runRemote=""
 #runRemote="echo "
 
-# elimina l'ultimo backup
+# delete the oldest backup
 for fs in {boot,root}; do 
 	set +e
 	$runRemote sudo rm -r $BACKUP_ROOT/backup.$N_BACKUPS/$fs
 	set -e
 done
 
-# scorri i backup
+# shift the backups, starting with the oldest one
 for ((src=$N_BACKUPS-1;src>=0;src--)); do
 	dst=$((src+1))
 	for fs in {boot,root}; do 
-		#[ $src -gt 0 ] && set +e # almeno l'ultimo shift deve funzionare
 		set +e
 		$runRemote sudo mv $BACKUP_ROOT/backup.$src/$fs $BACKUP_ROOT/backup.$dst
-		#[ $src -gt 0 ] && set -e
 		set -e
 	done
 done
 
+# do the actual backup
 rsync \
 	-avx \
 	--delete \
