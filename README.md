@@ -33,5 +33,8 @@ Older backups will be renamed to `backup.1`, `backup.2` and so on, up to `backup
 
 ## Running periodically
 
-The script can back up your system, see [Scheduling tasks with Cron](https://www.raspberrypi.org/documentation/linux/usage/cron.md).
+The script can back up your system periodically with no user intervention, see [Scheduling tasks with Cron](https://www.raspberrypi.org/documentation/linux/usage/cron.md).
+
+By default, `cron` will send a mail with the script output. Because the script will print all files being copied, you'll get an email listing which new/changed files have been backed up.
+
 
